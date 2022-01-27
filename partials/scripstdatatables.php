@@ -1,9 +1,0 @@
-<script src="pluigins/datatables/jquery.datatables.min.js"></script>
-<script src="pluigins/datatables-bs4/dataTables.bootstrap4.min.js"></script>
-<script src="pluigins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="pluigins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="pluigins/datatables-buttons/js/dataTables.bottons.min.js"></script>
-<script src="pluigins/datatables-buttons/js/bottons.bootstrap4.min.js"></script>
-<script src="pluigins/datatables-buttons.html5.min.js"></script>
-<script src="pluigins/datatables-buttons.print.min.js"></script>
-<script src="pluigins/datatables-buttons.colVis.min.js"></script>
