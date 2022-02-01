@@ -27,14 +27,14 @@
 
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Lokasi</h1>
+                <h1 class="m-0">Bagian</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">
                         <a href="?page=home">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Lokasi</li>
+                    <li class="breadcrumb-item active">Bagian</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -46,8 +46,8 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Lokasi</h3>
-            <a href="?page=lokasicreate" class="btn btn-success btn-sm float-right">
+            <h3 class="card-title">Data Bagian</h3>
+            <a href="?page=bagiancreate" class="btn btn-success btn-sm float-right">
                 <i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <div class="card-body">
@@ -55,14 +55,18 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Lokasi</th>
+                        <th>Nama Bagian</th>
+                        <th>Nama Kepala Bagian</th>
+                        <th>Nama Lokasi Bagian</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Nama Lokasi</th>
+                        <th>Nama Bagian</th>
+                        <th>Nama Kepala Bagian</th>
+                        <th>Nama Lokasi Bagian</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>
@@ -71,7 +75,9 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT * FROM lokasi";
+                    $selectSql = "SELECT B.*, K.nama_lengkap nama_kepala_bagian, L.nama_lokasi nama_lokasi_bagian FROM bagian B
+                    LEFT JOIN karyawan K ON B.karyawan_id = K.id
+                    LEFT JOIN lokasi L ON B.lokasi_id = L.id";
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
                     $no = 1;
@@ -79,11 +85,13 @@
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['nama_lokasi'] ?></td>
+                        <td><?php echo $row['nama_bagian'] ?></td>
+                        <td><?php echo $row['nama_kepala_bagian'] ?></td>
+                        <td><?php echo $row['nama_lokasi_bagian'] ?></td>
                         <td>
-                            <a href="?page=lokasiupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-edit"></i> Ubah
+                            <a href="?page=bagianupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-edit"></i> Ubah
                             </a>
-                            <a href="?page=lokasidelete&id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');"><i class="fa fa-trash"></i> Hapus
+                            <a href="?page=bagiandelete&id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');"><i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>
                     </tr>
