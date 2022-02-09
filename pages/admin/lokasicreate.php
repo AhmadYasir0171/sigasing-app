@@ -5,6 +5,22 @@ if (isset($_POST['button_create'])){
     $database = new Database();
     $db = $database->getConnection();
 
+    $validateSql = "SELECT * FROM lokasi WHERE nama_lokasi = ?";
+    $stmt = $db->prepare($validateSql);
+    $stmt ->bindParam(1, $_POST['nama_lokasi']);
+    $stmt ->execute();
+    if ($stmt->rowCount()>0){
+?>
+    <div class="alert alert-danger alert-dismissible m-2" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5><i class="icon fas fa-ban"></i>Gagal</h5>
+        Nama Lokasi Sudah ada
+    </div>
+    <?php 
+    } else {
+
     $insertSql = "INSERT INTO lokasi (nama_lokasi) VALUES (?)";
     $stmt = $db->prepare($insertSql);
     $stmt ->bindParam(1, $_POST['nama_lokasi']);
@@ -16,6 +32,7 @@ if (isset($_POST['button_create'])){
         $_SESSION['pesan'] = "Tambah data lokasi gagal";
     }
     echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+}
 }
 ?>
 

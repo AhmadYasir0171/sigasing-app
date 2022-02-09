@@ -5,6 +5,22 @@ if (isset($_POST['button_create'])){
     $database = new Database();
     $db = $database->getConnection();
 
+//     $validateSql = "SELECT * FROM jabatan WHERE nama_jabatan = ?";
+//     $stmt = $db->prepare($validateSql);
+//     $stmt ->bindParam(1, $_POST['nama_jabatan']);
+//     $stmt ->execute();
+//     if ($stmt->rowCount()>0){
+// ?>
+//     <div class="alert alert-danger alert-dismissible m-2" role="alert">
+//         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+//             <span aria-hidden="true">&times;</span>
+//         </button>
+//         <h5><i class="icon fas fa-ban"></i>Gagal</h5>
+//         Nama jabatan Sudah ada
+//     </div>
+//     <?php 
+//     } else {
+
     $insertSql = "INSERT INTO jabatan (nama_jabatan, gapok_jabatan, tunjangan_jabatan, uang_makan_perhari) VALUES (?,?,?,?)";
     $stmt = $db->prepare($insertSql);
     $stmt ->bindParam(1, $_POST['nama_jabatan']);
@@ -20,6 +36,7 @@ if (isset($_POST['button_create'])){
         $_SESSION['pesan'] = "Tambah data jabatan gagal";
     }
     echo "<meta http-equiv='refresh' content='0;url=?page=jabatanread'>";
+}
 }
 ?>
 
