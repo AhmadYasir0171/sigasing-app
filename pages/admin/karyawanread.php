@@ -100,8 +100,18 @@
                         <!-- <td><?php echo $no++ ?></td> -->
                         <td><?php echo $row['nik'] ?></td>
                         <td><?php echo $row['nama_lengkap'] ?></td>
-                        <td><?php echo $row['bagian_terkini'] ?></td>
-                        <td><?php echo $row['jabatan_terkini'] ?></td>
+                        <td>
+                            <?php 
+                            $bagian_terkini = $row['bagian_terkini'] == "" ? "Belum ada" : $row['bagian_terkini'];
+                            ?>
+                            <a href="?page=karyawanbagian&id=<?php echo $row['id'] ?>" class="btn bg-fuchsia btn-sm mr-1"><i class="fa fa-building"></i><?php echo $bagian_terkini ?></a>
+                    </td>
+                        <td>
+                            <?php
+                            $jabatan_terkini = $row['jabatan_terkini'] == "" ? "Belum ada" : $row['jabatan_terkini'];
+                            ?> 
+                            <a href="?page=karyawanjabatan&id=<?php echo $row['id'] ?>" class="btn bg-orange btn-sm mr-1"><i class="fa fa-building"></i><?php echo $jabatan_terkini ?></a>
+                            </td>
 
                         <td>
                             <a href="?page=lokasiupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-edit"></i> Ubah
