@@ -75,8 +75,6 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    // $selectSql = "SELECT * FROM lokasi";
-
                     $selectSql = "SELECT K.*,
                     (
                         SELECT J.nama_jabatan FROM jabatan_karyawan JK 
@@ -114,9 +112,10 @@
                             </td>
 
                         <td>
-                            <a href="?page=lokasiupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-edit"></i> Ubah
-                            </a>
-                            <a href="?page=lokasidelete&id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');"><i class="fa fa-trash"></i> Hapus
+                            <a href="?page=karyawanupdate&id_karyawan=<?php echo $row['id'] ?>&id_pengguna=<?= $row['pengguna_id']; ?>" class="btn btn-primary btn-sm mr-1">
+                                    <i class="fa fa-edit"></i> Ubah
+                                </a>
+                            <a href="?page=karyawandelete&id_karyawan=<?= $row['id']; ?>&id_pengguna=<?= $row['pengguna_id']; ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');"><i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>
                     </tr>
